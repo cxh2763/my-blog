@@ -9,15 +9,8 @@
       placeholder="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?w=100"
       src="https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?fit=crop&crop=entropy&w=1920&h=1080"
       ></ImageLoader> -->
-    <div
-      style="
-        margin: 200px 0;
-        height: 100%;
-        width: 250px;
-        background-color: #000;
-      "
-    >
-      <Contact></Contact>
+    <div style="height: 100%; width: 250px">
+      <SiteAside></SiteAside>
     </div>
   </div>
 </template>
@@ -29,7 +22,9 @@
 // import Pager from "./components/Pager"
 // import Empty from "./components/Empty"
 // import ImageLoader from "./components/ImageLoader"
-import Contact from "./components/Contact";
+// import Contact from "./components/Contact";
+// import Menu from "./components/Menu";
+import SiteAside from "./components/SiteAside";
 export default {
   components: {
     // Avatar,
@@ -37,7 +32,9 @@ export default {
     // Pager,
     // Empty
     // ImageLoader,
-    Contact,
+    // Contact,
+    // Menu,
+    SiteAside,
   },
   mounted() {},
   data() {
