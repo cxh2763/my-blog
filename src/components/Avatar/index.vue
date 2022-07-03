@@ -17,7 +17,7 @@ export default {
     url: {
       type: String,
       default:
-        "https://img1.baidu.com/it/u=4216761644,15569246&fm=253&app=120&size=w931&n=0&f=JPEG&fmt=auto?sec=1656867600&t=56dbc2b4c1fca47b5b1a07c27e9c8c2b",
+        "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fblog%2F202009%2F13%2F20200913114333_fddf6.thumb.1000_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659446005&t=a80b10c76b122356357ad260040b4a9e",
     },
     size: {
       type: Number,

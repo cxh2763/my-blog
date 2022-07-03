@@ -1,18 +1,20 @@
 <template>
   <nav class="Menu-container">
-    <a
+    <router-link
       v-for="(item, index) in items"
       :key="index"
-      :class="{
-        selected: isSelected(item),
+      :to="{
+        name: item.name,
       }"
-      :href="item.link"
+      :exact="item.exact"
+      active-class="selected"
+      exact-active-class=""
     >
       <div class="icon">
         <Icon :type="item.icon"></Icon>
       </div>
       <span>{{ item.title }}</span>
-    </a>
+    </router-link>
   </nav>
 </template>
 <script>
@@ -25,31 +27,31 @@ export default {
     return {
       items: [
         {
-          link: "/",
+          name: "Home",
           title: "首页",
           icon: "home",
           exact: true,
         },
         {
-          link: "/blog",
+          name: "Blog",
           title: "文章",
           icon: "blog",
           exact: false, // 激活状态是否要精确匹配
         },
         {
-          link: "/about",
+          name: "About",
           title: "关于我",
           icon: "about",
           exact: true,
         },
         {
-          link: "/project",
+          name: "Project",
           title: "项目&效果",
           icon: "code",
           exact: true,
         },
         {
-          link: "/message",
+          name: "Message",
           title: "留言板",
           icon: "chat",
           exact: true,
