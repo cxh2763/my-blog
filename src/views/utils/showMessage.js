@@ -8,7 +8,12 @@ import style from "@/styles/message.module.less"//开启css module
  * @param {HTMLElement} container 容器，消息会显示到该容器的正中心；如果不传，则显示到页面正中心
  * @param {Number} duration 多久后消失
 */
-export default function (content, type = "info", duration, container) {
+export default function (options = {}) {
+  //content, type = "info", duration, container
+  const content = options.content || '';
+  const type = options.type || 'info';
+  const duration = options.duration || 2000;
+  const container = options.container || document.body;
   //创建消息元素
   const div = document.createElement('div');
   div.className = `${style.message} ${style[`message-${type}`]}`;
@@ -37,6 +42,7 @@ export default function (content, type = "info", duration, container) {
     div.style.transform = `translate(-50%,-50%) translateY(-15px)`;
     div.addEventListener("transitionend", () => {
       div.remove()
+      options.callback && options.callback();//如果有回调函数，执行回调函数
     }, { once: true })
   }, duration)
 }

@@ -21,7 +21,15 @@ export default {
     Layout,
     SiteAside,
   },
-  mounted() {},
+  mounted() {
+    this.$showMessage({
+      content: "评论成功",
+      type: "success",
+      callback: () => {
+        console.log("callback");
+      },
+    });
+  },
   data() {
     return {};
   },
