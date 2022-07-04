@@ -4,7 +4,7 @@ module.exports = {
     port: 3000,
     proxy: {
       "/api": {
-        // target: "https://www.zhihu.com",
+        target: "https://www.zhihu.com",
       },
     },
   },

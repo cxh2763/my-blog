@@ -3,7 +3,6 @@ import showMessage from "../views/utils/showMessage";
 
 const ins = axios.create({}); //创建一个axios的实例 
 ins.interceptors.response.use((resp) => {
-  console.log("拦截器");
   if (resp.data.code === 0) {
     return resp.data.data;
   }
