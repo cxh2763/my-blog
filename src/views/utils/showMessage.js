@@ -4,7 +4,7 @@ import style from "@/styles/message.module.less"//开启css module
 /**
  * 弹出消息
  * @param {String} content 消息内容
- * @param {String} type 消息内容
+ * @param {String} type 消息类型
  * @param {HTMLElement} container 容器，消息会显示到该容器的正中心；如果不传，则显示到页面正中心
  * @param {Number} duration 多久后消失
 */
@@ -25,12 +25,13 @@ export default function (options = {}) {
     container = document.body;
   } else {
     //容器的position
-    if (getComputedStyle(container).position === "static") {
-      container.style.position = "relative";
+    if (options.container) { //如果传了container,否则相对于视口绝对定位
+      if (getComputedStyle(container).position === "static") {
+        container.style.position = "relative";
+      }
     }
   }
   container.appendChild(div);
-  console.log(div)
   //浏览器强行渲染
   div.clientHeight; //导致reflow 回流
   //回归到正常位置

@@ -22,13 +22,13 @@ export default {
     SiteAside,
   },
   mounted() {
-    this.$showMessage({
-      content: "评论成功",
-      type: "success",
-      callback: () => {
-        console.log("callback");
-      },
-    });
+    // this.$showMessage({
+    //   content: "评论成功",
+    //   type: "success",
+    //   callback: () => {
+    //     console.log("callback");
+    //   },
+    // });
   },
   data() {
     return {};
