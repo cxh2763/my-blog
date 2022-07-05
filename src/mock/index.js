@@ -1,4 +1,5 @@
-import "./banner";
+import "./banner"; //执行js文件
+import "./blog";
 import Mock from "mockjs";
 
 Mock.setup({

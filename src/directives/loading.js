@@ -18,7 +18,6 @@ import styles from "./loading.module.less";
 // }
 //如果 bind和update的效果一样可以如下这样写
 export default function (el, bindind) {
-  console.log(el)
   //更具binding.value的值，决定创建或者删除img元素
   if (bindind.value) {
     //创建img元素
