@@ -65,7 +65,7 @@ export default {
   data() {
     return {
       banners: [],
-      index: 1, //当前显示的是第几章轮播图
+      index: 0, //当前显示的是第几章轮播图
       containerHeight: 0, //整个容器的高度
       switching: false,
     };
@@ -99,10 +99,7 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
-  overflow: hidden; //外边距合并
-  ul {
-    margin: 0;
-  }
+  overflow: hidden; //触发bfc属性，防止公用子元素的margin
 }
 .carousel-container {
   width: 100%;

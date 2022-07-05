@@ -1,6 +1,11 @@
 <template>
-  <div class="carousel-item-container">
-    <div class="carousel-img">
+  <div
+    class="carousel-item-container"
+    ref="container"
+    @mousemove="handleMouseMove($event)"
+    @mouseleave="resizeMouse"
+  >
+    <div class="carousel-img" ref="img" :style="imagePosition">
       <ImageLoader
         @load="showWords()"
         :src="carousel.bigImg"
@@ -27,11 +32,21 @@ export default {
   mounted() {
     this.titleWidth = this.$refs.title.clientWidth;
     this.descWidth = this.$refs.desc.clientWidth;
+    this.setSize();
+    this.resizeMouse();
+    window.addEventListener("resize", this.setSize);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.setSize);
   },
   data() {
     return {
       titleWidth: 0,
       descWidth: 0,
+      containerSize: null, //外层容器size
+      innerSize: null, //内层图片size
+      mouseX: 0, //鼠标的横坐标
+      mouseY: 0, //鼠标的纵坐标
     };
   },
   methods: {
@@ -54,6 +69,47 @@ export default {
       descStyle.transition = "2s 1s";
       descStyle.width = this.descWidth + "px";
     },
+    setSize() {
+      this.containerSize = {
+        width: this.$refs.container.clientWidth,
+        height: this.$refs.container.clientHeight,
+      };
+      this.innerSize = {
+        width: this.$refs.img.clientWidth,
+        height: this.$refs.img.clientHeight,
+      };
+    },
+    handleMouseMove(e) {
+      const rect = this.$refs.container.getBoundingClientRect();
+      this.mouseX = e.clientX - rect.left;
+      this.mouseY = e.clientY - rect.top;
+    },
+    resizeMouse() {
+      this.mouseX = this.centor.x;
+      this.mouseY = this.centor.y;
+    },
+  },
+  computed: {
+    imagePosition() {
+      if (!this.innerSize || !this.containerSize) {
+        return {};
+      }
+      const extraWidth = this.innerSize.width - this.containerSize.width; //多出的宽度
+      const extraHeight = this.innerSize.height - this.containerSize.height; //多出的高度
+      const left = -(extraWidth / this.containerSize.width) * this.mouseX;
+      const top = -(extraHeight / this.containerSize.height) * this.mouseY;
+      return {
+        transform: `translate(${left}px,${top}px)`,
+      };
+    },
+    centor() {
+      if (this.containerSize) {
+        return {
+          x: this.containerSize.width / 2,
+          y: this.containerSize.height / 2,
+        };
+      }
+    },
   },
 };
 </script>
@@ -65,10 +121,15 @@ export default {
   height: 100%;
   color: #fff;
   position: relative;
+  overflow: hidden;
 }
 .carousel-img {
-  width: 100%;
-  height: 100%;
+  left: 0;
+  top: 0;
+  width: 110%;
+  height: 110%;
+  position: absolute;
+  transition: 0.15s;
 }
 .title,
 .desc {
