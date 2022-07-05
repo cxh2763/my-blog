@@ -1,9 +1,16 @@
 <template>
-  <h1>文章</h1>
+  <div>
+    <h1>文章</h1>
+  </div>
 </template>
 
 <script>
-export default {};
+import RightList from "./components/RightList.vue";
+export default {
+  components: {
+    RightList,
+  },
+};
 </script>
 
 <style>
