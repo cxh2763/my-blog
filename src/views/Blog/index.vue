@@ -1,17 +1,27 @@
 <template>
-  <div>
-    <h1>文章</h1>
-  </div>
+  <Layout>
+    <BlogList></BlogList>
+    <template #right>
+      <BlogCategory></BlogCategory>
+    </template>
+  </Layout>
 </template>
 
 <script>
-import RightList from "./components/RightList.vue";
+import BlogCategory from "./components/BlogCategory.vue";
+import BlogList from "./components/BlogList.vue";
+import Layout from "@/components/Layout";
 export default {
+  created() {
+    console.log(this.$route);
+  },
   components: {
-    RightList,
+    BlogCategory,
+    BlogList,
+    Layout,
   },
 };
 </script>
 
-<style>
+<style lang="less" scoped>
 </style>

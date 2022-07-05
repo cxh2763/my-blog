@@ -39,6 +39,7 @@ export default {
   li {
     min-height: 40px;
     line-height: 40px;
+    font-size: 14px;
     cursor: pointer;
     .active {
       color: @warn;
