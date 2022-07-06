@@ -4,6 +4,12 @@
       <span @click="handleClick(item)" :class="{ active: item.isSelect }">
         {{ item.name }}
       </span>
+      <span
+        class="aside"
+        :class="{ active: item.isSelect }"
+        v-if="item.aside && item.aside !== '0篇'"
+        >{{ item.aside }}</span
+      >
       <!-- 显示当前组件 -->
       <RightList :list="item.children" @select="handleClick" />
     </li>
@@ -45,6 +51,11 @@ export default {
       color: @warn;
       font-weight: bold;
     }
+  }
+  .aside {
+    font-size: 12px;
+    margin-left: 1em;
+    color: @gray;
   }
 }
 </style>
