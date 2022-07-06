@@ -13,7 +13,7 @@ import VLoading from "@/directives/loading"
 Vue.directive("loading", VLoading);
 
 //测试接口
-// import * as Api from "./api";
+import * as Api from "./api";
 // Api.getBlog("asdsa").then((r) => {
 //   console.log(r);
 // })

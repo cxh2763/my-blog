@@ -5,6 +5,7 @@
         :blog="data"
         v-if="JSON.stringify(data) !== '{}'"
       ></BlogDetail>
+      <BlogComment v-if="!isLoading"></BlogComment>
     </div>
     <template #right>
       <div class="right-container" v-loading="isLoading">
@@ -20,11 +21,14 @@ import { getBlog } from "@/api";
 import Layout from "@/components/Layout";
 import BlogDetail from "./components/BlogDetail.vue";
 import BlogToc from "./components/BlogToc.vue";
+import BlogComment from "./components/BlogComment.vue";
+
 export default {
   components: {
     Layout,
     BlogDetail,
     BlogToc,
+    BlogComment,
   },
   mixins: [fetchData({})],
   methods: {
