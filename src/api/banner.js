@@ -1,5 +1,4 @@
 import request from "./request";
-import showMessage from "../views/utils/showMessage";
 
 
 async function getBanners() {
