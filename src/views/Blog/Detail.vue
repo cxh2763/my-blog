@@ -17,6 +17,7 @@
 
 <script>
 import fetchData from "@/mixins/fetchData";
+import mainScroll from "@/mixins/mainScroll";
 import { getBlog } from "@/api";
 import Layout from "@/components/Layout";
 import BlogDetail from "./components/BlogDetail.vue";
@@ -24,10 +25,6 @@ import BlogToc from "./components/BlogToc.vue";
 import BlogComment from "./components/BlogComment.vue";
 
 export default {
-  mounted() {
-    this.$bus.$on("setMainScroll", this.handleSetMainScroll);
-    this.$refs.mainContainer.addEventListener("scroll", this.handleScroll);
-  },
   updated() {
     const hash = location.hash;
     location.hash = "";
@@ -35,27 +32,16 @@ export default {
       location.hash = hash;
     }, 50);
   },
-  beforeDestroy() {
-    this.$bus.$emit("mainScroll");
-    this.$bus.$off("setMainScroll", this.handleSetMainScroll);
-    this.$refs.mainContainer.removeEventListener("scroll", this.handleScroll);
-  },
   components: {
     Layout,
     BlogDetail,
     BlogToc,
     BlogComment,
   },
-  mixins: [fetchData({})],
+  mixins: [fetchData({}), mainScroll("mainContainer")],
   methods: {
     async fetchData() {
       return await getBlog(this.$route.params.id);
-    },
-    handleScroll() {
-      this.$bus.$emit("mainScroll", this.$refs.mainContainer);
-    },
-    handleSetMainScroll(top) {
-      this.$refs.mainContainer.scrollTop = top;
     },
   },
 };

@@ -60,21 +60,13 @@
 <script>
 import Pager from "@/components/Pager";
 import fetchData from "@/mixins/fetchData";
+import mainScroll from "@/mixins/mainScroll";
 import { getBlogs } from "@/api";
 import { formatDate } from "@/utils";
 export default {
-  mixins: [fetchData({})],
+  mixins: [fetchData({}), mainScroll("container")],
   components: {
     Pager,
-  },
-  mounted() {
-    this.$bus.$on("setMainScroll", this.handleSetMainScroll);
-    this.$refs.container.addEventListener("scroll", this.handleScroll);
-  },
-  beforeDestroy() {
-    this.$bus.$emit("mainScroll");
-    this.$bus.$off("setMainScroll", this.handleSetMainScroll);
-    this.$refs.container.removeEventListener("scroll", this.handleScroll);
   },
   methods: {
     formatDate,
@@ -110,12 +102,6 @@ export default {
           query,
         });
       }
-    },
-    handleScroll() {
-      this.$bus.$emit("mainScroll", this.$refs.container);
-    },
-    handleSetMainScroll(top) {
-      this.$refs.container.scrollTop = top;
     },
   },
   computed: {
