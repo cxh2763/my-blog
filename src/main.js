@@ -3,9 +3,11 @@ import Vue from "vue";
 import App from "./App";
 import "./styles/global.less"
 import router from "./router";
-import { showMessage } from "./views/utils";
+import { showMessage } from "./utils";
 import "./mock";
+import eventBus from "./eventBus";
 
+Vue.prototype.$bus = eventBus;
 Vue.prototype.$showMessage = showMessage;
 
 //注册全局指令

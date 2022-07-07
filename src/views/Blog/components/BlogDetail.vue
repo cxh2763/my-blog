@@ -8,7 +8,15 @@
         <a href="#data-form-container">评论：{{ blog.commentNumber }}</a></span
       >
       <span
-        ><a href="">{{ blog.category.name }}</a></span
+        ><RouterLink
+          :to="{
+            name: 'CategoryBlog',
+            params: {
+              categoryId: blog.category.id,
+            },
+          }"
+          >{{ blog.category.name }}</RouterLink
+        ></span
       >
     </div>
     <div v-html="blog.htmlContent" class="markdown-body"></div>
@@ -16,7 +24,7 @@
 </template>
 
 <script>
-import { formatDate } from "@/views/utils";
+import { formatDate } from "@/utils";
 import "@/styles/markdown.css";
 import "highlight.js/styles/github.css";
 export default {

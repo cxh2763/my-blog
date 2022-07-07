@@ -20,9 +20,7 @@ export default {
   components: {
     MessageArea,
   },
-  mounted() {
-    console.log(this.data);
-  },
+  mounted() {},
   data() {
     return {};
   },

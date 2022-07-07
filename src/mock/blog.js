@@ -289,7 +289,6 @@ Mock.mock("/api/comment", "post", {
 });
 
 Mock.mock(/^\/api\/comment\/?(\?.+)?$/, "get", function (options) {
-  console.log(11)
   const query = qs.parse(options.url);
 
   return Mock.mock({

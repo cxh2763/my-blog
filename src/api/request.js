@@ -1,5 +1,5 @@
 import axios from "axios";
-import showMessage from "../views/utils/showMessage";
+import showMessage from "../utils/showMessage";
 
 const ins = axios.create({}); //创建一个axios的实例 
 ins.interceptors.response.use((resp) => {
