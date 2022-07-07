@@ -11,8 +11,10 @@ Vue.prototype.$bus = eventBus;
 Vue.prototype.$showMessage = showMessage;
 
 //注册全局指令
-import VLoading from "@/directives/loading"
-Vue.directive("loading", VLoading);
+import vLoading from "@/directives/loading"
+import vLazy from "./directives/lazy"
+Vue.directive("loading", vLoading);
+Vue.directive("lazy", vLazy)
 
 //测试接口
 import * as Api from "./api";

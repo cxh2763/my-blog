@@ -34,7 +34,7 @@ Mock.mock(/^\/api\/blog(\?.+)?$/, "get", function (options) {
           "thumb|1": [
             "@image(300x250, @color, #fff, @natural)",
             "@image(300x250, @color, #fff, @natural)",
-            null,
+            // null,
           ],
           createDate: `@date('T')`,
         },
