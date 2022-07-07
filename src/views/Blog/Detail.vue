@@ -25,6 +25,7 @@ import BlogComment from "./components/BlogComment.vue";
 
 export default {
   mounted() {
+    this.$bus.$on("setMainScroll", this.handleSetMainScroll);
     this.$refs.mainContainer.addEventListener("scroll", this.handleScroll);
   },
   updated() {
@@ -34,7 +35,9 @@ export default {
       location.hash = hash;
     }, 50);
   },
-  beforedestroyed() {
+  beforeDestroy() {
+    this.$bus.$emit("mainScroll");
+    this.$bus.$off("setMainScroll", this.handleSetMainScroll);
     this.$refs.mainContainer.removeEventListener("scroll", this.handleScroll);
   },
   components: {
@@ -50,6 +53,9 @@ export default {
     },
     handleScroll() {
       this.$bus.$emit("mainScroll", this.$refs.mainContainer);
+    },
+    handleSetMainScroll(top) {
+      this.$refs.mainContainer.scrollTop = top;
     },
   },
 };

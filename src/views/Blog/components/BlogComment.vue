@@ -20,13 +20,51 @@ export default {
   components: {
     MessageArea,
   },
-  mounted() {},
+  mounted() {
+    window.fetchMore = this.fetchMore;
+    this.$bus.$on("mainScroll", this.handleScroll);
+  },
+  beforeDestroy() {
+    this.$bus.$off("mainScroll", this.handleScroll);
+  },
   data() {
-    return {};
+    return {
+      page: 1,
+      limit: 10,
+    };
+  },
+  computed: {
+    hasMore() {
+      return this.data.rows.length < this.data.total;
+    },
   },
   methods: {
+    async handleScroll(dom) {
+      if (this.isLoading || !dom) {
+        //表示现在正在加载
+        return;
+      }
+      const range = 100; //定义一个范围
+      const dec = Math.abs(dom.scrollTop + dom.clientHeight - dom.scrollHeight);
+      if (dec < range) {
+        await this.fetchMore();
+        console.log("加载了更多");
+      }
+    },
     async fetchData() {
       return await getComments(this.$route.params.id, this.page, this.limit);
+    },
+    //加载下一页
+    async fetchMore() {
+      if (!this.hasMore) {
+        return;
+      }
+      this.isLoading = true;
+      this.page++;
+      const resp = await this.fetchData();
+      this.data.total = resp.total;
+      this.data.rows = this.data.rows.concat(resp.rows);
+      this.isLoading = false;
     },
     async handleSubmit(formData, callback) {
       const resp = await postComment({

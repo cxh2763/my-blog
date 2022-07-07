@@ -35,7 +35,10 @@ export default {
     handleSelect(item) {
       location.hash = item.anchor;
     },
-    setSelect() {
+    setSelect(scrollDom) {
+      if (!scrollDom) {
+        return;
+      }
       this.activeAnchor = ""; //清空之前的激活状态
       const range = 200;
       for (const dom of this.doms) {
@@ -83,7 +86,6 @@ export default {
         }
       };
       addToDoms(this.toc);
-      console.log(doms);
       return doms;
     },
   },

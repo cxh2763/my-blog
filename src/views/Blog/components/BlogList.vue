@@ -68,7 +68,13 @@ export default {
     Pager,
   },
   mounted() {
-    console.log(this.routeInfo);
+    this.$bus.$on("setMainScroll", this.handleSetMainScroll);
+    this.$refs.container.addEventListener("scroll", this.handleScroll);
+  },
+  beforeDestroy() {
+    this.$bus.$emit("mainScroll");
+    this.$bus.$off("setMainScroll", this.handleSetMainScroll);
+    this.$refs.container.removeEventListener("scroll", this.handleScroll);
   },
   methods: {
     formatDate,
@@ -104,6 +110,12 @@ export default {
           query,
         });
       }
+    },
+    handleScroll() {
+      this.$bus.$emit("mainScroll", this.$refs.container);
+    },
+    handleSetMainScroll(top) {
+      this.$refs.container.scrollTop = top;
     },
   },
   computed: {

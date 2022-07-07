@@ -12,9 +12,7 @@ import BlogCategory from "./components/BlogCategory.vue";
 import BlogList from "./components/BlogList.vue";
 import Layout from "@/components/Layout";
 export default {
-  created() {
-    console.log(this.$route);
-  },
+  created() {},
   components: {
     BlogCategory,
     BlogList,
