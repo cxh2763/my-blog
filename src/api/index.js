@@ -1,4 +1,5 @@
 import getBanners from "./banner";
+import getSetting from "./setting";
 import { getBlogTypes, getBlogs, getBlog, getComments, postComment } from "./blog"
 
 export {
@@ -8,4 +9,5 @@ export {
   getBlog,
   getComments,
   postComment,
+  getSetting,
 }

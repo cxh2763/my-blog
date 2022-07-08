@@ -1,6 +1,6 @@
 <template>
   <div
-    v-loading="isLoading"
+    v-loading="loading"
     class="home-container"
     ref="container"
     @wheel="handleWheel"
@@ -44,16 +44,17 @@
 </template>
 
 <script>
-import { getBanners } from "@/api";
 import CarouselItem from "./CarouselItem";
 import Icon from "@/components/Icon";
-import fetchData from "@/mixins/fetchData.js";
+import { mapState } from "vuex";
 
 export default {
-  mixins: [fetchData([])],
   components: {
     CarouselItem,
     Icon,
+  },
+  created() {
+    this.$store.dispatch("banner/fetchBanner");
   },
   mounted() {
     this.containerHeight = this.$refs.container.clientHeight;
@@ -66,6 +67,7 @@ export default {
     marginTop() {
       return -this.index * this.containerHeight + "px";
     },
+    ...mapState("banner", ["loading", "data"]),
   },
   data() {
     return {
@@ -92,9 +94,6 @@ export default {
     },
     handleResize() {
       this.containerHeight = this.$refs.container.clientHeight;
-    },
-    async fetchData() {
-      return await getBanners();
     },
   },
 };

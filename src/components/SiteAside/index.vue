@@ -1,22 +1,26 @@
 <template>
   <div class="site-aside-container">
-    <Avatar></Avatar>
-    <h1 class="title">瓜皮的博客</h1>
+    <Avatar :url="data.avatar"></Avatar>
+    <h1 class="title">{{ data.siteTitle }}</h1>
     <Menu></Menu>
     <Content></Content>
-    <footer class="footer">京ICP证030173号</footer>
+    <footer class="footer">{{ data.icp }}</footer>
   </div>
 </template>
 
 <script>
 import Avatar from "@/components/Avatar";
 import Content from "./Contact";
-import Menu from ".//Menu";
+import Menu from "./Menu";
+import { mapState } from "vuex";
 export default {
   components: {
     Avatar,
     Content,
     Menu,
+  },
+  computed: {
+    ...mapState("setting", ["data"]),
   },
 };
 </script>

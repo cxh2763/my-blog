@@ -1,55 +1,43 @@
 <template>
   <ul class="contact-container">
     <li>
-      <a>
+      <a target="_blank" :href="data.github">
         <div class="icon">
-          <Icon type="qq"></Icon>
+          <Icon type="github" />
         </div>
-        <span> 123453235 </span>
+        <span>{{ data.githubName }}</span>
+      </a>
+    </li>
+    <li>
+      <a :href="`mailto:${data.mail}`">
+        <div class="icon">
+          <Icon type="mail" />
+        </div>
+        <span>{{ data.mail }}</span>
+      </a>
+    </li>
+    <li>
+      <a
+        :href="`tencent://message/?Menu=yes&uin=${data.qq}&Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45`"
+      >
+        <div class="icon">
+          <Icon type="qq" />
+        </div>
+        <span>{{ data.qq }}</span>
       </a>
       <div class="pop">
-        <img
-          src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fblog%2F202105%2F19%2F20210519233901_63630.thumb.1000_0.jpg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659370800&t=702ffe04813ebb00645797cd6c187011"
-        />
+        <img :src="data.qqQrCode" alt="" />
       </div>
     </li>
     <li>
       <a>
-        <div class="icon">
-          <Icon type="qq"></Icon>
+        <div class="icon weixin">
+          <Icon type="weixin" />
         </div>
-        <span> 123453235 </span>
+        <span>{{ data.weixin }}</span>
       </a>
       <div class="pop">
-        <img
-          src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fblog%2F202105%2F19%2F20210519233901_63630.thumb.1000_0.jpg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659370800&t=702ffe04813ebb00645797cd6c187011"
-        />
-      </div>
-    </li>
-    <li>
-      <a>
-        <div class="icon">
-          <Icon type="qq"></Icon>
-        </div>
-        <span> 123453235 </span>
-      </a>
-      <div class="pop">
-        <img
-          src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fblog%2F202105%2F19%2F20210519233901_63630.thumb.1000_0.jpg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659370800&t=702ffe04813ebb00645797cd6c187011"
-        />
-      </div>
-    </li>
-    <li>
-      <a>
-        <div class="icon">
-          <Icon type="qq"></Icon>
-        </div>
-        <span> 123453235 </span>
-      </a>
-      <div class="pop">
-        <img
-          src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fblog%2F202105%2F19%2F20210519233901_63630.thumb.1000_0.jpg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659370800&t=702ffe04813ebb00645797cd6c187011"
-        />
+        <img :src="data.weixinQrCode" alt="" />
       </div>
     </li>
   </ul>
@@ -57,9 +45,13 @@
 
 <script>
 import Icon from "@/components/Icon";
+import { mapState } from "vuex";
 export default {
   components: {
     Icon,
+  },
+  computed: {
+    ...mapState("setting", ["data"]),
   },
 };
 </script>

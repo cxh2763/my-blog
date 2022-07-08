@@ -6,6 +6,10 @@ import router from "./router";
 import { showMessage } from "./utils";
 import "./mock";
 import eventBus from "./eventBus";
+import store from "@/store";
+
+//加载全局网站配置
+store.dispatch("setting/fetchSetting");
 
 Vue.prototype.$bus = eventBus;
 Vue.prototype.$showMessage = showMessage;
@@ -18,6 +22,9 @@ Vue.directive("lazy", vLazy)
 
 //测试接口
 import * as Api from "./api";
+// Api.getSetting().then(r => {
+//   console.log(r)
+// })
 // Api.getBlog("asdsa").then((r) => {
 //   console.log(r);
 // })
@@ -33,6 +40,7 @@ import * as Api from "./api";
 // })
 
 new Vue({
+  store,
   router,
   render: (h) => h(App),
 }).$mount("#app");
