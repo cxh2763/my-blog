@@ -1,10 +1,10 @@
 <template>
   <div class="site-aside-container">
-    <Avatar :url="data.avatar"></Avatar>
-    <h1 class="title">{{ data.siteTitle }}</h1>
+    <Avatar v-if="data" :url="data.avatar"></Avatar>
+    <h1 class="title">{{ data && data.siteTitle }}</h1>
     <Menu></Menu>
-    <Content></Content>
-    <footer class="footer">{{ data.icp }}</footer>
+    <Content v-if="data"></Content>
+    <footer class="footer">{{ data && data.icp }}</footer>
   </div>
 </template>
 
