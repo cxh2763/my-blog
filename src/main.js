@@ -21,7 +21,7 @@ Vue.directive("loading", vLoading);
 Vue.directive("lazy", vLazy)
 
 //测试接口
-import * as Api from "./api";
+// import * as Api from "./api";
 // Api.getProjects().then((r) => {
 //   console.log(r)
 // })

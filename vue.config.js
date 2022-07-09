@@ -8,5 +8,6 @@ module.exports = {
       },
     },
   },
+  publicPath: '',
   configureWebpack: require("./webpack.config"),
 };
