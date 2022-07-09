@@ -22,9 +22,9 @@ Vue.directive("lazy", vLazy)
 
 //测试接口
 import * as Api from "./api";
-Api.getAbout().then((r) => {
-  console.log(r)
-})
+// Api.getProjects().then((r) => {
+//   console.log(r)
+// })
 // Api.getSetting().then(r => {
 //   console.log(r)
 // })

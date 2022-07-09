@@ -5,20 +5,20 @@ export default (refval = null) => {
   return {
     mounted() {
       this.$bus.$on("setMainScroll", this.handleSetMainScroll);
-      this.$refs[refval].addEventListener("scroll", this.handleScroll);
+      this.$refs[refval].addEventListener("scroll", this.handleMainScroll);
     },
     beforeDestroy() {
       this.$bus.$emit("mainScroll");
       this.$bus.$off("setMainScroll", this.handleSetMainScroll);
-      this.$refs[refval].removeEventListener("scroll", this.handleScroll);
+      this.$refs[refval].removeEventListener("scroll", this.handleMainScroll);
     },
     methods: {
-      handleScroll() {
+      handleSetMainScroll(scrollTop) {
+        this.$refs[refval].scrollTop = scrollTop;
+      },
+      handleMainScroll() {
         this.$bus.$emit("mainScroll", this.$refs[refval]);
       },
-      handleSetMainScroll(top) {
-        this.$refs[refval].scrollTop = top;
-      },
-    }
+    },
   }
 }
