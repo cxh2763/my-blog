@@ -2,8 +2,9 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import routes from "./routes";
 import { titleController } from "@/utils";
-Vue.use(VueRouter); //使用一个vue插件，路由
-
+if (!window.Vue) { //生产环境cdn引入，会自动安装插件
+  Vue.use(VueRouter); //使用一个vue插件，路由
+}
 
 const router = new VueRouter({
   //配置

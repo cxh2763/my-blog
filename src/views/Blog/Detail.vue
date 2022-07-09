@@ -43,6 +43,11 @@ export default {
   methods: {
     async fetchData() {
       const resp = await getBlog(this.$route.params.id);
+      if (!resp) {
+        //文章不存在
+        this.$router.push("404");
+        return;
+      }
       titleController.setRouteTitle(resp.title);
       return resp;
     },

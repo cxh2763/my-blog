@@ -4,7 +4,9 @@ import banner from "./banner";
 import setting from "./setting";
 import about from "./about";
 import project from "./project";
-Vue.use(Vuex);
+if (!window.Vuex) { //生产环境cdn引入，会自动安装插件
+  Vue.use(Vuex);
+}
 
 export default new Vuex.Store({
   modules: {
