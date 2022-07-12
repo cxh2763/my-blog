@@ -9,7 +9,7 @@ if (!window.Vue) { //生产环境cdn引入，会自动安装插件
 const router = new VueRouter({
   //配置
   routes,  //路由配置规则
-  mode: "history", //配置路由模式
+  mode: "hash", //配置路由模式
 })
 
 router.afterEach((to, from) => {
