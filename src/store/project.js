@@ -21,6 +21,11 @@ export default {
       }
       ctx.commit("setLoading", true);
       const resp = await getProjects();
+      for (const item of resp) {
+        let { thumb } = item;
+        thumb = `http://159.75.17.167:7001${thumb}`;
+        item = Object.assign(item, { thumb });
+      }
       ctx.commit("setData", resp);
       ctx.commit("setLoading", false);
     },

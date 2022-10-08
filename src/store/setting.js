@@ -17,7 +17,12 @@ export default {
   actions: {
     async fetchSetting(ctx) {
       ctx.commit("setLoading", true)
-      const resp = await getSetting();
+      let resp = await getSetting();
+      let { avatar, qqQrCode, weixinQrCode } = resp;
+      avatar = `http://159.75.17.167:7001${avatar}`;
+      qqQrCode = `http://159.75.17.167:7001${qqQrCode}`;
+      weixinQrCode = `http://159.75.17.167:7001${weixinQrCode}`;
+      resp = Object.assign(resp, { avatar, qqQrCode, weixinQrCode });
       ctx.commit("setData", resp);
       ctx.commit("setLoading", false);
       if (resp.favicon) {

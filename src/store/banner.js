@@ -19,7 +19,13 @@ export default {
     async fetchBanner(ctx) {
       if (!ctx.state.data.length) {
         ctx.commit("setLoading", true)
-        const resp = await getBanners();
+        let resp = await getBanners();
+        for (const item of resp) {
+          let { bigImg, midImg } = item;
+          bigImg = `http://159.75.17.167:7001${bigImg}`;
+          midImg = `http://159.75.17.167:7001${midImg}`;
+          item = Object.assign(item, { midImg, bigImg });
+        }
         ctx.commit("setData", resp);
         ctx.commit("setLoading", false);
       }

@@ -3,41 +3,34 @@
     <ul>
       <li v-for="item in data.rows" :key="item.id">
         <div class="thumb" v-if="item.thumb">
-          <RouterLink
-            :to="{
-              name: 'BlogDetail',
-              params: {
-                id: item.id,
-              },
-            }"
-          >
-            <img v-lazy="item.thumb" :alt="item.title" :title="item.title" />
+          <RouterLink :to="{
+            name: 'BlogDetail',
+            params: {
+              id: item.id,
+            },
+          }">
+            <img v-lazy="'http://159.75.17.167:7001'+item.thumb" :alt="item.title" :title="item.title" />
           </RouterLink>
         </div>
         <div class="main">
-          <RouterLink
-            :to="{
-              name: 'BlogDetail',
-              params: {
-                id: item.id,
-              },
-            }"
-          >
+          <RouterLink :to="{
+            name: 'BlogDetail',
+            params: {
+              id: item.id,
+            },
+          }">
             <h2>{{ item.title }}</h2>
           </RouterLink>
           <div class="aside">
             <span>日期：{{ formatDate(item.createDate) }}</span>
             <span>浏览：{{ item.scanNumber }}</span>
             <span>评论: {{ item.commentNumber }}</span>
-            <RouterLink
-              :to="{
-                name: 'CategoryBlog', //双引号里面不能用双引号
-                params: {
-                  categoryId: item.category.id,
-                },
-              }"
-              >{{ item.category.name }}</RouterLink
-            >
+            <RouterLink :to="{
+              name: 'CategoryBlog', //双引号里面不能用双引号
+              params: {
+                categoryId: item.category.id,
+              },
+            }">{{ item.category.name }}</RouterLink>
           </div>
           <div class="desc">
             {{ item.description }}
@@ -46,14 +39,8 @@
       </li>
     </ul>
     <!-- 分页放到这里 -->
-    <Pager
-      v-if="data.total"
-      :total="Number(data.total)"
-      :current="Number(routeInfo.page)"
-      :limit="Number(routeInfo.limit)"
-      :visibleNumber="10"
-      @pageChange="handlePageChange"
-    ></Pager>
+    <Pager v-if="data.total" :total="Number(data.total)" :current="Number(routeInfo.page)"
+      :limit="Number(routeInfo.limit)" :visibleNumber="10" @pageChange="handlePageChange"></Pager>
   </div>
 </template>
 
@@ -135,6 +122,7 @@ export default {
 
 <style scoped lang="less">
 @import "~@/styles/var.less";
+
 .blog-list-container {
   line-height: 1.7;
   position: relative;
@@ -144,38 +132,47 @@ export default {
   height: 100%;
   box-sizing: border-box;
   scroll-behavior: smooth;
+
   ul {
     list-style: none;
     margin: 0;
     padding: 0;
   }
 }
+
 li {
   display: flex;
   padding: 15px 0;
   border-bottom: 1px solid @gray;
+
   .thumb {
     flex: 0 0 auto;
     margin-right: 15px;
+
     img {
       display: block;
       max-width: 200px;
       border-radius: 5px;
     }
   }
+
   .main {
     flex: 1 1 auto;
+
     h2 {
       margin: 0;
     }
   }
+
   .aside {
     font-size: 12px;
     color: @gray;
+
     span {
       margin-right: 15px;
     }
   }
+
   .desc {
     margin: 15px 0;
     font-size: 14px;
